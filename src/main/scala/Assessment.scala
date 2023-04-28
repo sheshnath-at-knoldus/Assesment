@@ -31,11 +31,13 @@ object Assessment extends App {
 
   //Ques 4
   private val number = 123
-  private val lengthOfNumber = number.toString.length
-  logger.info("" + getFullWord(number, "", lengthOfNumber + 1))
-
+  logger.info("" + fullWords(number))
+  private def fullWords(number: Int): String = {
+    val lengthOfNumber = number.toString.length
+    getFullWords(number, "", lengthOfNumber + 1)
+  }
   @tailrec
-  private def getFullWord(number: Int, result: String, length: Int): String = {
+  private def getFullWords(number: Int, result: String, length: Int): String = {
     if (length == 1)
       result
     else {
@@ -52,7 +54,7 @@ object Assessment extends App {
         case 9 => "Nine"
         case 0 => "Zero"
       }
-      getFullWord(number / 10, finalResult + result, length - 1)
+      getFullWords(number / 10, finalResult + result, length - 1)
     }
   }
 }
